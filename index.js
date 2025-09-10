@@ -3,8 +3,9 @@ const authMiddleware = require('./auth');
 
 const app = express();
 const PORT = 3000;
+// Seleciona a porta 3000 do servidor
 
-// Lista simulada de usuários
+
 const usuarios = [
   { id: 1, nome: 'Alice' },
   { id: 2, nome: 'Bob' }
@@ -12,21 +13,21 @@ const usuarios = [
 
 let proximoId = 3;
 
-// Middleware global
+
 app.use((req, res, next) => {
   console.log('Chamando API');
   next();
 });
 
-// Parsing de JSON
+
 app.use(express.json());
 
-// Rota pública
+
 app.get('/usuarios', (req, res) => {
   res.status(200).json(usuarios);
 });
 
-// Rota privada com autenticação
+// chama o middleware antes de criar um novo usuário
 app.post('/usuarios', authMiddleware, (req, res) => {
   const { nome } = req.body;
 
@@ -43,7 +44,7 @@ app.post('/usuarios', authMiddleware, (req, res) => {
   });
 });
 
-// Inicializa servidor
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
