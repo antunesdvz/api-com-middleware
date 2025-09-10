@@ -48,3 +48,4 @@ app.post('/usuarios', authMiddleware, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+// Mostra mensagem de que o servidor está rodando
